@@ -111,6 +111,7 @@ use \App\Http\Controllers\Frontend;
                             <th>Tahun</th>
                             <th>Total Penggunaan & Harga</th>
                             <th>Biaya Admin</th>
+                            <th>Verify Image</th>
                             <th>Confirm/Last Payment</th>
                         </tr>
                     </thead>
@@ -160,6 +161,7 @@ use \App\Http\Controllers\Frontend;
                             <td>{{ $row->tahun }}</td>
                             <td>{{ Frontend::digits($row->jumlah_meter).' KWH' }} = Rp.{{ Frontend::digits($row->jumlah_meter * ($row->id_tarif == 1 ? 1352 : 1467)) }}</td>
                             <td>Rp.{{ number_format($row->biaya_admin) }}</td>
+                            <td><img src="{{ $row->verify_image == null ? asset('images/broken-image.png') : asset('images/verify/'.$row->verify_image) }}" alt="" style="width:200px;"></td>
                             <td>
                             @php
                                 $Date = Pembayarans::keliru_1day($row->paid_in);

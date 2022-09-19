@@ -25,22 +25,22 @@
         <div class="text-center mt-5">
             <div class="d-flex justify-content-between">
                 <h5 class="font-weight-bold">Total Transaksi</h5>
-                <h5>Rp.{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar')) }}</h5>
+                <h5>Rp.{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar')) }}</h5>
             </div>
             <hr class="divider-laporan">
             <div class="d-flex justify-content-between mt-4">
                 <h5 class="font-weight-bold">Total Biaya Admin</h5>
-                <h5>Rp.{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.biaya_admin')) }}</h5>
+                <h5>Rp.{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.biaya_admin')) }}</h5>
             </div>
             <hr class="divider-laporan">
             <div class="d-flex justify-content-between mt-4">
                 <h5 class="font-weight-bold">Total KWH</h5>
-                <h5>{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'tagihan.jumlah_meter')) }} KWH</h5>
+                <h5>{{ number_format(Pembayaran::pembayaran_bulan($bulan,$tahun,'tagihans.jumlah_meter')) }} KWH</h5>
             </div>
             <hr class="divider-laporan">
             <div class="d-flex justify-content-between mt-4">
                 <h5 class="font-weight-bold">Total Transaksi</h5>
-                <h5>{{ number_format(Pembayaran::pembayaran_bulan_count($bulan,$tahun,'tagihan.jumlah_meter')) }} <i class="fas fa-users"></i></h5>
+                <h5>{{ number_format(Pembayaran::pembayaran_bulan_count($bulan,$tahun,'tagihans.jumlah_meter')) }} <i class="fas fa-users"></i></h5>
             </div>
             <hr class="divider-laporan">
             <div class="d-flex justify-content-between mt-4">
@@ -49,15 +49,15 @@
                     $bulan_persen = ($bulan == '1' ? "12" : $bulan - 1);
                 @endphp
                 <h5>
-                    <i class="fas fa-angle-double-{{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayaran.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayaran.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar')) * 100) < 0 ? 'down' : 'up' }}" style='color: {{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayaran.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayaran.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar')) * 100) < 0 ? 'red' : 'green'}};'></i>
-                    {{-- {{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayaran.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayaran.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar')) * 100) < 0 ? $down : $up}} --}}
-                    {{ number_format((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayaran.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayaran.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.total_bayar')) * 100) }} %</h5>
+                    <i class="fas fa-angle-double-{{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayarans.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayarans.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar')) * 100) < 0 ? 'down' : 'up' }}" style='color: {{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayarans.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayarans.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar')) * 100) < 0 ? 'red' : 'green'}};'></i>
+                    {{-- {{ ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayarans.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayarans.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar')) * 100) < 0 ? $down : $up}} --}}
+                    {{ number_format((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar') && Pembayaran::pembayaran_bulan ($bulan_persen,$tahun,'pembayarans.total_bayar'))  == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.total_bayar') - Pembayaran::pembayaran_bulan( $bulan_persen,$tahun,'pembayarans.total_bayar'))/ Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.total_bayar')) * 100) }} %</h5>
             </div>
             <hr class="divider-laporan">
             <div class="d-flex justify-content-between mt-4">
                 <h5 class="font-weight-bold">Total Biaya Admin di Banding Bulan Lalu %</h5>
                 
-                <h5>{{ number_format((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.biaya_admin') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.biaya_admin') && Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.biaya_admin')) == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayaran.biaya_admin') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.biaya_admin')) / Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayaran.biaya_admin')) * 100) }} %</h5>
+                <h5>{{ number_format((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.biaya_admin') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.biaya_admin') && Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.biaya_admin')) == 0 ? '0' : ((Pembayaran::pembayaran_bulan($bulan,$tahun,'pembayarans.biaya_admin') - Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.biaya_admin')) / Pembayaran::pembayaran_bulan($bulan_persen,$tahun,'pembayarans.biaya_admin')) * 100) }} %</h5>
             </div>
             <hr class="divider-laporan">
         </div>

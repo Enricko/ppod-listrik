@@ -22,7 +22,7 @@
                             <th>Alamat</th>
                             <th>Email</th>
                             <th>Nomor KWH</th>
-                            <th>Tarif</th>
+                            <th>Tarif Per 1 KWH</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,10 +38,6 @@
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->nomor_kwh }}</td>
                             <td>Rp.{{ number_format($row->tarif_perkwh) }}</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <a href="" class="btn btn-danger" onclick="return confirm('Apa anda yakin?')">Delete</a>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

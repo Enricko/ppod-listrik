@@ -34,11 +34,18 @@ Route::prefix('admin')->middleware(['auth','user-level'])->group(function(){
     // == Tagihan ==
     Route::get('/tagihan',[App\Http\Controllers\Tagihans::class,'tagihan']);
     Route::get('/tagihan_tambah',[App\Http\Controllers\Tagihans::class,'tambah']);
+    Route::post('/tagihan_tambah',[App\Http\Controllers\Tagihans::class,'tambah']);
     Route::post('/tagihan/insert',[App\Http\Controllers\Tagihans::class,'insert']);
     Route::get('/tagihan/edit/{id_tagihan}',[App\Http\Controllers\Tagihans::class,'edit']);
     Route::post('/tagihan/update/{id_penggunaan}',[App\Http\Controllers\Tagihans::class,'update']);
     Route::get('/tagihan/delete/{id_tagihan}/{id_penggunaan}',[App\Http\Controllers\Tagihans::class,'delete']);
     Route::get('/tagihan/payment_confirm/{id_tagihan}',[App\Http\Controllers\Tagihans::class,'payment_confirm']);
+    
+    // == Pending ==
+    Route::get('/pending',[App\Http\Controllers\Pendings::class,'pending']);
+    Route::get('/detail_tagihan/{name}/{id_verify}',[App\Http\Controllers\Pendings::class,'detail_tagihan']);
+    Route::get('/valid/{id_verify}/{verify_image}',[App\Http\Controllers\Pendings::class,'valid']);
+    Route::get('/not_valid/{id_verify}/{verify_image}',[App\Http\Controllers\Pendings::class,'not_valid']);
     
     // == Pembayaran ==
     Route::get('/pembayaran',[App\Http\Controllers\Pembayarans::class,'pembayaran']);

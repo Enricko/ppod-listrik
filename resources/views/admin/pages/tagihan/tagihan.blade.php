@@ -162,7 +162,7 @@ h6.info-box-subtitle {
                             <td>{{ number_format($row->meter_awal) }}</td>
                             <td>{{ number_format($row->meter_akhir) }}</td>
                             <td>{{ number_format($row->jumlah_meter).' KWH' }} = Rp.{{ number_format($row->jumlah_meter * ($row->id_tarif == 1 ? 1352 : 1467)) }}</td>
-                            <td><a href="tagihan/payment_confirm/{{ $row->id_tagihan }}" class="btn btn-{{ $row->status == 'belum_bayar' ? "danger" : 'success disabled' }}" onclick="return confirm('Apakah tagihan sudah terbayar?')">{{ $row->status == 'belum_bayar' ? "Belum Bayar" : 'Sudah Bayar'}}</a></td>
+                            <td><a href="tagihan/payment_confirm/{{ $row->id_tagihan }}" class="btn btn-{{ $row->status == 'belum_bayar' ? "danger" : ($row->status == 'pending' ? 'warning' : 'success') }} disabled" onclick="return confirm('Apakah tagihan sudah terbayar?')">{{ $row->status == 'belum_bayar' ? "Belum Bayar" : ($row->status == 'pending' ? 'Pending' : 'Sudah Bayar') }}</a></td>
                             <td>
                                 @if ($row->status == 'sudah_bayar')
                                     <p style="width: 100px;color:black;">Can't Change</p>

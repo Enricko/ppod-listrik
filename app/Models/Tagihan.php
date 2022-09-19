@@ -12,92 +12,105 @@ class Tagihan extends Model
     use HasFactory;
 
     public function tagihan(){
-        return DB::table('tagihan')
+        return DB::table('tagihans')
         ->orderBy('status','desc')
         ->orderBy('id_tagihan','desc')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
         ->where('id_level',1)
         ->get();
     }
+    public function pending_payment($data){
+        return DB::table('tagihans')
+        ->where('id',Auth::user()->id)
+        ->where('status','belum_bayar')
+        ->update($data);
+    }
     public function get_tagihan_by_id($id_tagihan){
 
-        return DB::table('tagihan')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
-        ->where('tagihan.id_tagihan',$id_tagihan)
-        ->where('tagihan.status','belum_bayar')
+        return DB::table('tagihans')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
+        ->where('tagihans.id_tagihan',$id_tagihan)
+        ->where('tagihans.status','belum_bayar')
         ->first();
     }
     public function get_tagihan(){
         $id = Auth::user()->id;
 
-        return DB::table('tagihan')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
+        return DB::table('tagihans')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
         ->where('users.id',$id)
-        ->where('tagihan.status','belum_bayar')
+        ->where('tagihans.status','belum_bayar')
         ->first();
     }
     public function get_tagihan_process(){
         $id = Auth::user()->id;
 
-        return DB::table('tagihan')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
-        ->where('status','belum_bayar')
+        return DB::table('tagihans')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
+        ->where('status','!=','sudah_bayar')
         ->where('users.id',$id)
-        ->orderBy('tagihan.bulan','asc')
-        ->orderBy('tagihan.tahun','asc')
+        ->orderBy('tagihans.bulan','asc')
+        ->orderBy('tagihans.tahun','asc')
         ->get();
     }
     public function get_tagihan_process_row(){
         $id = Auth::user()->id;
 
-        return DB::table('tagihan')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
-        ->where('status','belum_bayar')
+        return DB::table('tagihans')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
+        ->where('status','!=','sudah_bayar')
+        ->where('status','!=','pending')
         ->where('users.id',$id)
         ->get();
     }
     public function pending(){
         $id = Auth::user()->id;
 
-        return DB::table('tagihan')
-        ->join('penggunaan', 'penggunaan.id_penggunaan', '=', 'tagihan.id_penggunaan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
+        return DB::table('tagihans')
+        ->join('penggunaans', 'penggunaans.id_penggunaan', '=', 'tagihans.id_penggunaan')
+        ->join('users', 'users.id', '=', 'tagihans.id')
         ->where('status','belum_bayar')
         ->get();
     }
     public function select_tagihan($data){
-        return DB::table('penggunaan')->where($data)->first();
+        return DB::table('penggunaans')->where($data)->first();
     }
     public function penggunaan_insert($data){
-        DB::table('penggunaan')->insert($data);
+        DB::table('penggunaans')->insert($data);
     }
     public function penggunaan_update($id_penggunaan,$data){
-        DB::table('penggunaan')->where('id_penggunaan',$id_penggunaan)->update($data);
+        DB::table('penggunaans')->where('id_penggunaan',$id_penggunaan)->update($data);
     }
     public function tagihan_insert($data_tagihan){
-        DB::table('tagihan')->insert($data_tagihan);
+        DB::table('tagihans')->insert($data_tagihan);
     }
     public function tagihan_update($id_penggunaan,$data_tagihan){
-        DB::table('tagihan')->where('id_penggunaan',$id_penggunaan)->update($data_tagihan);
+        DB::table('tagihans')->where('id_penggunaan',$id_penggunaan)->update($data_tagihan);
     }
     public function deletePenggunaan($id_penggunaan){
-        return DB::table('penggunaan')->where('id_penggunaan',$id_penggunaan)->delete();
+        return DB::table('penggunaans')->where('id_penggunaan',$id_penggunaan)->delete();
     }
     public function deleteTagihan($id_tagihan){
-        return DB::table('tagihan')->where('id_tagihan',$id_tagihan)->delete();
+        return DB::table('tagihans')->where('id_tagihan',$id_tagihan)->delete();
     }
     public function payment_confirm($confirm,$id_tagihan){
-        return DB::table('tagihan')->where('id_tagihan',$id_tagihan)->update($confirm);
+        return DB::table('tagihans')->where('id_tagihan',$id_tagihan)->update($confirm);
     }
     public function select_tagihan_payment($id_tagihan){
-        return DB::table('tagihan')
-        ->join('users', 'users.id', '=', 'tagihan.id')
+        return DB::table('tagihans')
+        ->join('users', 'users.id', '=', 'tagihans.id')
         ->where('id_tagihan',$id_tagihan)->first();
     }
-    
+    public static function get_bulan($users,$bulan,$tahun){
+        return DB::table('tagihans')
+        ->where('id',$users)
+        ->where('bulan',$bulan)
+        ->where('tahun',$tahun)
+        ->get();
+    }
 }

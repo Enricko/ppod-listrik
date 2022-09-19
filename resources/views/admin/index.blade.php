@@ -165,10 +165,10 @@ use \App\Models\Pembayaran;
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Pendapatan Bulan {{ $bulan[$month != NULL ? $month : date('n')] }} -- {{ $year != NULL ? $year : "20".date('y') }}</div>{{-- $month!=NULL?$month: --}}
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($monthly) }}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($monthly) == null ? 0 : Frontend::digits($monthly) }}</div>
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Pendapatan Bulan {{ $bulan[$month != NULL ? $month : date('n')] }} -- {{ $year != NULL ? $year : "20".date('y') }} (Admin)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($clean_monthly) }}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($clean_monthly) == null ? 0 : Frontend::digits($clean_monthly) }}</div>
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Transaksi Bulan {{ $bulan[$month != NULL ? $month : date('n')] }} -- {{ $year != NULL ? $year : "20".date('y') }} = ( {{ $transaksi->where('tahun',$year != NULL ? $year : "20".date('y'))->where('bulan',$month != NULL ? $month : date('m'))->count() }} )</div>
                                 </div>
@@ -188,10 +188,10 @@ use \App\Models\Pembayaran;
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Pendapatan Tahun {{ $year != NULL ? $year : "20".date('y') }}</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($yearly) }}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-2">Rp.{{ Frontend::digits($yearly) == null ? 0 : Frontend::digits($yearly) }}</div>
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Pendapatan Tahun {{ $year != NULL ? $year : "20".date('y') }} (Admin)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.{{ Frontend::digits($clean_yearly) }}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.{{ Frontend::digits($clean_yearly) == null ? 0 : Frontend::digits($clean_yearly) }}</div>
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Transaksi Tahun {{ $year != NULL ? $year : "20".date('y') }} = ( {{ $transaksi->where('tahun',$year != NULL ? $year : "20".date('y'))->count() }} )</div>
                                 </div>

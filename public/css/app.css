@@ -11661,4 +11661,12 @@ body.sidebar-toggled footer.sticky-footer {
     .no-print * {
         display: none !important;
     }
+    .no-print-bg,
+    .no-print-bg * {
+        background-color: white;
+    }
+    .print-1,
+    .print-1 * {
+        width: 850px;
+    }
 }

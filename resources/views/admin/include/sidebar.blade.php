@@ -25,11 +25,17 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>User</span></a>
     </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/tagihan">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Tagihan</span></a>
+    </li>
 
     <li class="nav-item">
-    <a class="nav-link" href="/admin/tagihan">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Tagihan</span></a>
+        <a class="nav-link" href="/admin/pending">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Pending</span></a>
     </li>
 
     <li class="nav-item">

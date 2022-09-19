@@ -7,6 +7,13 @@
     <title>PPOB Listrik</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ asset('css') }}/app.css">
+    <style>
+        .text-warning-bold,
+        .text-warning-bold h6{
+            color: #f6c23e !important;
+            font-weight: 700
+        }
+    </style>
 </head>
 <body class="bg-gradient-primary">
     <div class="container">
@@ -57,7 +64,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome&nbsp;{{ Auth::user()->name }}</h1>
                                         <p style="font-size:18px;">Tagihan Listrik Anda</p>
-                                        @if($tagihan->count() <= 0)
+                                        @if($tagihan_process->count() <= 0)
                                         <p>Belum Ada Tagihan</p>
                                         @else
                                         @php
@@ -66,8 +73,10 @@
                                             );
                                         @endphp
                                         @foreach ($tagihan_process as $row)
-                                        <h6>Bulan {{ $bulan[$row->bulan] }}{{"($row->bulan)" }} Tahun {{ $row->tahun }}</h6>
-                                        <p>{{ number_format($row->jumlah_meter).' KWH' }} = {{ 'Rp.'.number_format(($row->jumlah_meter) * $tarif->tarif_perkwh)}}</p>
+                                        <div class="{{ $row->status == 'pending' ? 'text-warning-bold' : '' }}">
+                                            <h6>Bulan {{ $bulan[$row->bulan] }}{{"($row->bulan)" }} Tahun {{ $row->tahun }}</h6>
+                                            <p>{{ number_format($row->jumlah_meter).' KWH' }} = {{ 'Rp.'.number_format(($row->jumlah_meter) * $tarif->tarif_perkwh)}}</p>
+                                        </div>
                                         @endforeach
                                         <p style="margin-top:15px;"><span style="font-size:18px;">Bayar Melalui : </span> 
                                             <a href="/bayar/bca" class="btn btn-outline-primary"><img src="{{ asset('images') }}/font/bca.png" alt="" style="width:50px;"></a>

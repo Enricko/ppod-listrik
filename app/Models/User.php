@@ -59,22 +59,27 @@ class User extends Authenticatable
     public function get_penggunaan(){
         $id = Auth::user()->id;
 
-        return DB::table('penggunaan')->where('id',$id)->first();
+        return DB::table('penggunaans')->where('id',$id)->first();
     }
     public function get_tarif(){
         $id_tarif = Auth::user()->id_tarif;
 
-        return DB::table('tarif')->where('id_tarif',$id_tarif)->first();
+        return DB::table('tarifs')->where('id_tarif',$id_tarif)->first();
     }
     public function get_user_data(){
         return DB::table('users')
-        ->join('tarif', 'tarif.id_tarif', '=', 'users.id_tarif')
+        ->join('tarifs', 'tarifs.id_tarif', '=', 'users.id_tarif')
         ->get();
     }
     public function get_user_data_tagihan(){
         return DB::table('users')
-        ->join('tarif', 'tarif.id_tarif', '=', 'users.id_tarif')
+        ->join('tarifs', 'tarifs.id_tarif', '=', 'users.id_tarif')
         ->where('id_level',1)
         ->get();
+    }
+    public static function get_users($id){
+        return DB::table('users')
+        ->where('id',$id)
+        ->first();
     }
 }
